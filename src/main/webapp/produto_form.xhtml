@@ -9,7 +9,29 @@
 </head>
 <body>
 
-produto_form
+	<h1>Cadastro de Produtos</h1>
+
+	<h:form>
+		<h3>
+			<h:commandLink action="#{produtoBean.listarProdutos}"
+				value="Listagem de produtos"></h:commandLink>
+		</h3>
+
+	</h:form>
+	<h:form>
+		<h:panelGrid colums="2">
+			<h:outputLabel value="Nome"></h:outputLabel>
+			<h:inputText value="#{produtoBean.produto.nome}"></h:inputText>
+
+			<h:outputLabel value="Preço"></h:outputLabel>
+			<h:inputText value="#{produtoBean.produto.preco}"></h:inputText>
+
+			<h:commandButton value="Salvar" action="#{produtoBean.salvarProduto}"
+				type="submit"></h:commandButton>
+
+		</h:panelGrid>
+	</h:form>
+
 
 </body>
 </html>

@@ -6,16 +6,17 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class ProdutoBean {
 
-	private Produto produto;
+	private Produto produto = new Produto();
 	private static List<Produto> lista;
-	
+
 	private DataModel<Produto> produtos;
 
 	@PostConstruct
@@ -24,23 +25,40 @@ public class ProdutoBean {
 		lista.add(new Produto("Iphone", 9000.0));
 		lista.add(new Produto("xiaomi", 1000.0));
 	}
-	
-	
-	//actions
+
+	// actions
 	public String adicionaForm() {
 		produto = new Produto();
 		return "produto_form";
 	}
-	
+
 	public String excluirProduto() {
-		
+
 		Produto p = (Produto) (produtos.getRowData());
 		lista.remove(p);
-		
+
 		return "home";
 	}
-	
-	//gets e sets
+
+	public String listarProdutos() {
+		return "home";
+	}
+
+	public String salvarProduto() {
+		lista.add(produto);
+
+		return "home";
+	}
+
+	public String editarProdutoForm() {
+
+		produto = (Produto) (produtos.getRowData());
+				
+
+		return "produto_form";
+	}
+
+	// gets e sets
 	public Produto getProduto() {
 		return produto;
 	}
@@ -57,9 +75,5 @@ public class ProdutoBean {
 	public void setProdutos(DataModel<Produto> produtos) {
 		this.produtos = produtos;
 	}
-	
-	
-	
-	
-	
+
 }
